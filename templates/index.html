@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>U-LOVE Wonders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="home-page">
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+
+        <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="U-LOVE Wonders Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home')}}" class="active">Home</a></li>
+        <li><a href="{{ url_for('register')}}">Register</a></li>
+        <li><a href="{{ url_for('resources')}}">Resources</a></li>
+        <li><a href ="{{ url_for('contact')}}">Contact Us</a></li>
+        <li><a href="{{ url_for('login')}}">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to U-LOVE Wonders</h1>
+        <p>Your trusted source for mental health support and resources.</p>
+        <a href="{{ url_for('resources')}}" class="cta-button">Explore Resources</a>
+      </div>
+      <div class="overlay"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+      <h2>Our Mission</h2>
+      <p>We believe in the power of mental health to transform lives and communities. Our mission is to: Equip young adults with the knowledge, skills, and support to develop mental resilience, foster emotional intelligence, and become confident advocates for their mental well-being through education, technology, community, and peer support.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+      <h2>What We Offer</h2>
+      <div class="service-cards">
+        <div class="service-card">
+          <img src="{{ url_for('static', filename='images/resources.jpg') }}" alt="Resources" class="offer-image">
+        <p> <h3>Resources</h3>
+          Flip charts, notebooks, sticky notes, and pens—essential for hands-on activities and group exercises.
+          T-shirts, flyers, banners, water bottles—to create a sense of
+          belonging and promote the initiative. A dedicated room on campus that provides a quiet,
+          comfortable environment for weekly sessions.</p>
+        </div>
+        <div class="service-card">
+          <img src="{{ url_for('static', filename='images/support.jpg') }}" alt="Support" class="offer-image">
+        <p> <h3> Peer Support</h3>
+          We have a volunteer graduate from the University of Rwanda willing to take us
+          through some basic components of understanding mental health illness in
+          addition to peer support training that we had asked for from the Solid Minds
+          Counseling Clinic.</p>
+        </div>
+        <div class="service-card">
+          <img src="{{ url_for('static', filename='images/community.jpg') }}" alt="community" class="offer-image">
+          <p> <h3> Community </h3>
+            Every Wednesday, we host a one-hour, thirty-minute in-person mental health peer support session on campus,
+            where students can share experiences and support one another in a safe,
+            friendly space.  </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Contact Us Section -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>We’d love to hear from you! If you have any questions or need support, feel free to reach out.</p>
+  <form id="contact-form" action="#" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="4" required></textarea>
+    
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+  <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+</body>
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Wellbeing Wonders Logo">
+    </div>
+    
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>Email: uloveclub@gmail.com</p>
+      <p>Phone: +250791381714</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <p> @ulove.alu</p><a href="#"><img src="{{ url_for('static', filename='images/instagram.jpeg') }}" alt="Instagram"></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 U-LOVE Wonders. All rights reserved.</p>
+    <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+  </div>
+</footer>
+
+</html>
+

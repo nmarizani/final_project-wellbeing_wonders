@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support - U-LOVE Wonders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  
+</head>
+<body class ="support-page">
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="U-LOVE Wonders Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home')}}">Home</a></li>
+        <li><a href="{{ url_for('resources')}}">Resources</a></li>
+        <li><a href="{{ url_for('support')}}" class="active">Support</a></li>
+        <li><a href="{{ url_for('profile')}}">Profile</a></li>
+        <li><a href="{{ url_for('chat')}}">Chat</a></li>
+        <li><a href ="{{ url_for('contact')}}">Contact Us</a></li>
+        <li><a href="{{ url_for('login')}}">Login</a></li>
+        <li><a href="{{ url_for('logout')}}">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <main>
+      <section class="support-section">
+        <h2>How Can We Help You?</h2>
+        <div class="support-options">
+          <!-- Chat with Peer Support Option -->
+          <div class="support-option">
+            <img src="{{ url_for('static', filename='images/chaticon.png')}}" alt="Chat Icon">
+            <h3>Chat with Peer Support</h3>
+            <p>Connect with fellow students for understanding and shared experiences.</p>
+            <a href="{{ url_for('chat')}}" class="btn">Start Chat</a>
+          </div>
+  
+          <!-- Give Feedback Option -->
+          <div class="support-option">
+            <img src="{{ url_for('static', filename='images/feedbackicon.png')}}" alt="Feedback Icon">
+            <h3>Give Feedback</h3>
+            <p>Help us improve by sharing your thoughts and suggestions.</p>
+            <a href="{{ url_for('feedback')}}" class="btn">Submit Feedback</a>
+          </div>
+  
+          <!-- Contact a Counselor Option -->
+          <div class="support-option">
+            <img src="{{ url_for('static', filename='images/counselloricon.png')}}" alt="Counselor Icon">
+            <h3>Contact a Counselor</h3>
+            <p>Speak with a mental health professional for personalized support.</p>
+            <a href="{{ url_for('counsellor')}}" class="btn">Get in Touch</a>
+          </div>
+        </div>
+      </section>
+    </main>  
+
+  <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+</body>
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="U-LOVE Wonders Logo">
+    </div>
+    
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>Email: uloveclub@gmail.com</p>
+      <p>Phone: +250791381714</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <p> @ulove.alu</p><a href="#"><img src="{{ url_for('static', filename='images/instagram.jpeg')}}" alt="Instagram"></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 U-LOVE Wonders. All rights reserved.</p>
+    <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+  </div>
+</footer>
+
+</html>

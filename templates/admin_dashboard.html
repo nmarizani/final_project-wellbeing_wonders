@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Wellbeing Wonders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="admin-dashboard-page">
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="U-LOVE Wonders Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home')}}">Home</a></li>
+        <li><a href="{{ url_for('resources')}}">Resources</a></li>
+        <li><a href="{{ url_for('support')}}">Support</a></li>
+        <li><a href="{{ url_for('profile')}}">Profile</a></li>
+        <li><a href="{{ url_for('chat')}}">Chat</a></li>
+        <li><a href="{{ url_for('feedback')}}">Feedback</a></li>
+        <li><a href="{{ url_for('counsellor')}}">Counselors</a></li>
+        <li><a href ="{{ url_for('contact')}}">Contact Us</a></li>
+        <li><a href="{{ url_for('logout')}}">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Welcome, Admin</h1>
+    <div class="dashboard-container">
+      <!-- Registered Accounts Tracker -->
+      <div class="dashboard-card">
+        <h3>Registered Accounts</h3>
+        <p>Total Accounts: <span id="account-count">0</span></p>        
+        <button onclick="viewAccounts()">View Accounts</button>
+      </div>
+
+      <!-- Support Groups Tracker -->
+      <div class="dashboard-card">
+        <h3>Support Groups</h3>
+        <p>Active Groups: <span id="group-count">2</span></p>
+        <a href="{{ url_for('support_group')}}" class="btn">Manage Groups</a>
+      </div>
+
+      <!-- Feedback Access -->
+      <div class="dashboard-card">
+        <h3>Feedback</h3>
+        <p>Review feedback and suggestions from users.</p>
+        <button onclick="viewFeedback()">Access Feedback</button>
+      </div>
+
+      <!-- Upload Resources -->
+      <div class="dashboard-card">
+        <h3>Upload Resources</h3>
+        <p>Share new articles, videos, or tools in the Resources page.</p>
+        <form id="resource-form" enctype="multipart/form-data">
+          <input type="file" id="resource-file" name="resource" required>
+          <button type="submit">Upload</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+</body>
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Wellbeing Wonders Logo">
+    </div>
+    
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>Email: uloveclub@gmail.com</p>
+      <p>Phone: +250791381714</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <p> @ulove.alu</p><a href="#"><img src="{{ url_for('static', filename='images/instagram.jpeg') }}" alt="Instagram"></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 U-LOVE Wonders. All rights reserved.</p>
+    <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+  </div>
+</footer>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join a Support Group</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class ="support-group-page">
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="Wellbeing Wonders Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home')}}">Home</a></li><li>
+        <li><a href="{{ url_for('resources')}}">Resources</a></li>
+        <li><a href="{{ url_for('support')}}">Support</a></li>
+        <li><a href="{{ url_for('profile')}}">Profile</a></li>
+        <li><a href="{{ url_for('chat')}}">Chat</a></li>
+        <li><a href="{{ url_for('feedback')}}">Feedback</a></li>
+        <li><a href ="{{ url_for('counsellor')}}">Counselors</a></li>     
+        <li><a href="{{ url_for('logout')}}">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="join-group-container">
+      <h1>Join a Support Group</h1>
+      <p>Choose a group with a peer supporter and connect with up to two fellow students.</p>
+
+      <div class="groups-wrapper">
+        <!-- Group 1 -->
+        <div class="group-option">
+          <h2>Group 1: Male Peer Supporter</h2>
+          <div id="group-status-male" class="group-status">
+            <p><strong>Peer Supporter:</strong> John Doe</p>
+            <p><strong>Members:</strong> <span id="members-count-male">0</span>/3</p>
+          </div>
+          <form id="join-group-form-male">
+            <label for="student-name-male">Your Name:</label>
+            <input type="text" id="student-name-male" placeholder="Enter your name" required>
+            <button type="submit" class="btn">Join Group</button>
+          </form>
+        </div>
+
+        <!-- Group 2 -->
+        <div class="group-option">
+          <h2>Group 2: Female Peer Supporter</h2>
+          <div id="group-status-female" class="group-status">
+            <p><strong>Peer Supporter:</strong> Jane Smith</p>
+            <p><strong>Members:</strong> <span id="members-count-female">0</span>/3</p>
+          </div>
+          <form id="join-group-form-female">
+            <label for="student-name-female">Your Name:</label>
+            <input type="text" id="student-name-female" placeholder="Enter your name" required>
+            <button type="submit" class="btn">Join Group</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Message Area -->
+      <div id="join-message" class="join-message"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt=" U-LOVE Wonders Logo">
+      </div>
+      
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>Email: uloveclub@gmail.com</p>
+        <p>Phone: +250791381714</p>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <p> @ulove.alu</p><a href="#"><img src="{{ url_for('static', filename='images/instagram.jpeg')}}" alt="Instagram"></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 U-LOVE Wonders. All rights reserved.</p>
+      <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+</body>
+</html>

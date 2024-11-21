@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - Wellbeing Wonders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class ="student_dashboard-page">
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="U-LOVE Wonders Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home')}}">Home</a></li>
+        <li><a href="{{ url_for('resources')}}">Resources</a></li>
+        <li><a href="{{ url_for('support')}}">Support</a></li>
+        <li><a href="{{ url_for('profile')}}">Profile</a></li>
+        <li><a href="{{ url_for('chat')}}">Chat</a></li>
+        <li><a href="{{ url_for('feedback')}}">Feedback</a></li>
+        <li><a href ="{{ url_for('counsellor')}}">Counselors</a></li>
+        <li><a href ="{{ url_for('feedback')}}">Contact Us</a></li>
+        <li><a href="{{ url_for('logout')}}">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="greeting">
+      <h1>Welcome Back, <span id="student-name">Student</span>!</h1>
+      <p>Your journey to better mental health starts here.</p>
+    </div>
+    <div class="dashboard-container">
+      <!-- Progress Tracker -->
+      <div class="dashboard-card">
+        <h3>Your Progress</h3>
+        <p>You're doing great! Keep it up!</p>
+        <div class="progress-bar-container">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+      <!-- Peer Support -->
+      <div class="dashboard-card">
+        <h3>Peer Support</h3>
+        <p>Connect with your peer supporters or join a support group.</p>
+        <a href="{{ url_for('support_group')}}" class="btn">Join Now</a>
+
+      </div>
+      <!-- Mental Wellness Tips -->
+      <div class="dashboard-card">
+        <h3>Mental Wellness Tip</h3>
+        <p>"Take a moment to breathe. You've got this!"</p>
+      </div>
+      <!-- Quick Links -->
+      <div class="dashboard-card">
+        <h3>More Resources</h3>
+        <ul>
+          <li><a href="{{ url_for('resources')}}">Resources</a></li>
+          <li><a href="{{ url_for('support')}}">Available Support</a></li>
+          <li><a href="{{ url_for('chat')}}">Chat</a></li>
+        </ul>
+      </div>
+      <!-- Achievements -->
+      <div class="dashboard-card">
+        <h3>Achievements</h3>
+        <p>You've completed 5 activities this month. Keep up the momentum!</p>
+      </div>
+    </div>
+  </main>
+  <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+  </body>
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="U-LOVE Wonders Logo">
+    </div>
+   
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>Email: uloveclub@gmail.com</p>
+      <p>Phone: +250791381714</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <p> @ulove.alu</p><a href="#"><img src="{{ url_for('static', filename='images/instagram.jpeg')}}" alt="Instagram"></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 U-LOVE Wonders. All rights reserved.</p>
+    <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+  </div>
+</footer>
+
+</html>

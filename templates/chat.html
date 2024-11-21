@@ -1,0 +1,118 @@
+<!-- chat.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat - Wellbeing Wonders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body class ="chat-page">
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="U-LOVE Wonders Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home')}}">Home</a></li>
+        <li><a href="{{ url_for('resources')}}">Resources</a></li>
+        <li><a href="{{ url_for('support')}}">Support</a></li>
+        <li><a href="{{ url_for('profile')}}">Profile</a></li>
+        <li><a href="{{ url_for('chat')}}" class="active">Chat</a></li>
+        <li><a href="{{ url_for('feedback')}}">Feedback</a></li>
+        <li><a href ="{{ url_for('contact')}}">Contact Us</a></li>
+        <li><a href="{{ url_for('login')}}">Login</a></li>
+        <li><a href="{{ url_for('logout')}}">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <main>
+      <!-- Chat Selection Panel -->
+      <section class="chat-selection">
+        <h2>Start a Conversation</h2>
+        <div class="chat-options">
+          <button onclick="startChat('peer')">Chat with Peer Support</button>
+          <button onclick="startChat('professional')">Chat with a Professional</button>
+        </div>
+      </section>
+  
+      <!-- Chat Container -->
+      <div class="chat-container" id="chatContainer" style="display: none;">
+        <div class="chat-header">
+          <h3 id="chatTitle">Chat with Peer Support</h3>
+          <button onclick="endChat()">End Chat</button>
+        </div>
+        <div class="chat-box"> 
+          <div id="chat-log" class="chat-log"></div>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="messageInput" placeholder="Type a message...">
+          <button onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </main>
+  
+    <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+    <script>
+      // Function to start a chat with either peer support or a professional
+      function startChat(type) {
+        document.getElementById("chatContainer").style.display = "block";
+        document.getElementById("chatTitle").innerText = type === 'peer' ? 'Chat with Peer Support' : 'Chat with a Professional';
+        // Clear previous chat log
+        document.getElementById("chat-log").innerHTML = "";
+      }
+  
+      // Function to end the chat
+      function endChat() {
+        document.getElementById("chatContainer").style.display = "none";
+      }
+  
+      // Function to send a message
+          function sendMessage() {
+  const chatLog = document.getElementById('chat-log');
+  const userMessage = document.getElementById('messageInput').value;
+  
+  if (userMessage.trim()) {
+    chatLog.innerHTML += `<div class="user-message">${userMessage}</div>`;
+    document.getElementById('messageInput').value = '';
+    
+    // Initial automated response
+    setTimeout(() => {
+      chatLog.innerHTML += `<div class="bot-message">Thank you for reaching out. How can I assist you today?</div>`;
+    }, 1000);
+
+    // Second follow-up automated response
+    setTimeout(() => {
+      chatLog.innerHTML += `<div class="bot-message">Someone will be in touch with you shortly.</div>`;
+    }, 3000);
+  }
+} 
+    </script>
+</body>
+
+ <!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="Wellbeing Wonders Logo">
+    </div>
+    
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>Email: uloveclub@gmail.com</p>
+      <p>Phone: +250791381714</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <p> @ulove.alu</p><a href="#"><img src="{{ url_for('static', filename='images/instagram.jpeg')}}" alt="Instagram"></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 U-LOVE Wonders. All rights reserved.</p>
+    <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+  </div>
+</footer>
+
+</html>

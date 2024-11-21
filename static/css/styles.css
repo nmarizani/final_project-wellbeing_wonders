@@ -1,0 +1,1290 @@
+
+.home-page {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;  
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background-color: #2c3e50;
+  color: #ffffff;
+}
+
+
+.nav-links {
+  list-style: none;
+}
+
+.nav-links li {
+  display: inline;
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+}
+
+/* CSS Reset for consistent styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* Styling for the logo within the circle */
+.navbar .logo {
+  border-radius: 50%; /* Makes the image circular */
+  overflow: hidden; /* Ensures the image stays within the circle */
+  width: 100px; /* Set the diameter of the circle */
+  height: 100px; /* Set the diameter of the circle */
+  margin-right: 20px; /* Adds space between the logo and the navigation links */
+}
+
+
+.navbar .logo img {
+  width: 100%; /* Make the image fill the circle */
+  height: 100%; /* Make the image fill the circle */
+  object-fit: cover; /* Ensures the image covers the entire circle */
+}
+
+/* Other styling for the navigation links */
+nav a {
+  text-decoration: none;
+  color: #333;
+  margin: 0 10px;
+}
+
+nav a:hover {
+  color: #0066cc;
+}
+
+
+/* Hero Section */
+
+.hero {  position: relative;
+    background-image: url('../images/hero-bg1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling issues */
+  }
+
+
+.hero .hero-content {
+  z-index: 2;
+  max-width: 600px;
+  color: rgba(233, 232, 240, 0.822);
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.hero .cta-button {
+  background-color: #e74c3c;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.hero .cta-button:hover {
+  background-color: #c0392b;
+}
+
+.hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* About Section */
+.about {
+  padding: 40px 20px;
+  text-align: center;
+  min-height: 300px; 
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.about p {
+  font-size: 1.2rem; /* Larger paragraph font */
+  color: #555;
+  line-height: 1.6; 
+}
+
+/* Services Section */
+.services {
+  padding: 50px 25px;
+  text-align: center;
+  border-radius: 8px;
+  min-height: 400px;
+  background-color: #f0f2f3;
+
+}
+
+.services h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #333;
+  text-align: center;
+
+}
+
+.service-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.service-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
+  width: 100%;
+  gap: 20px;
+  margin-top: 20px;
+  box-sizing: border-box;
+} 
+
+.service-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  font-size: 0.9rem;
+  color: #555;
+  
+}
+/* Styling for the What We Offer section */
+#what-we-offer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #b7c1c4;
+  padding: 50px;
+  border-radius: 8px;
+  height: 100vh; /* Takes full viewport height */
+  box-sizing: border-box; 
+}
+
+#what-we-offer h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* Style each offer */
+.offer {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.offer-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 20px;
+  margin-right: 20px;
+  object-fit: cover;
+  align-self: center;
+}
+
+/* Styling for text in each offer */
+.offer p {
+  color: #333;
+  font-size: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+label, input, select, button {
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+button {
+  background-color: #1d51e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4432e7;
+}
+/* Contact Us Section */
+#contact {
+  background-color: #f4f4f9;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+#contact h2 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+#contact p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+#contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#contact-form label {
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+#contact-form input, #contact-form textarea {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+#contact-form textarea {
+  resize: vertical;
+}
+
+#contact-form button {
+  background-color: #5349df;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#contact-form button:hover {
+  background-color: #5433e7;
+}
+html {
+  scroll-behavior: smooth;
+}
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #f4f4f9;
+  padding: 5px 1px;
+  font-size: 0.8em;
+  text-align: center;
+  width: 100%; /* Ensures it spans the full width */
+  bottom: 0;
+  left: 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.footer-content div {
+  flex: 1 1 200px;
+  margin: 4px;
+}
+
+.footer-logo {
+  border-radius: 100%; /* Makes the image circular */
+  overflow: hidden; /* Ensures the image stays within the circle */
+  width: 40px; /* Set the diameter of the circle */
+  height: 50px; /* Set the diameter of the circle */
+  margin-right: 2px; /* Adds space between the logo and the navigation links */
+}
+
+/* Styling for the footer logo to make it circular */
+.footer-logo img {
+  width: 40px; /* Adjust size as needed */
+  height: 40px; /* Adjust size as needed */
+  border-radius: 50%; /* Makes it circular */
+  object-fit: cover; /* Ensures the image covers the entire circle */
+  border: 2px solid #f4f4f9; /* Optional: Adds a border around the logo */
+}
+
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin: 5px 0;
+}
+
+.footer-links a,
+.footer-contact p,
+.footer-social a {
+  color: #f4f4f9;
+  text-decoration: none;
+}
+
+.footer-social a {
+  margin: 0 5px;
+  display: inline-block;
+}
+
+.footer-social img {
+  width: 24px;
+  height: 24px;
+}
+
+.footer-bottom {
+  border-top: 1px solid #555;
+  margin-top: 5px;
+  padding-top: 2.5px;
+  font-size: 0.7em;
+  color: #aaa;
+}
+
+.footer-bottom a {
+  color: #aaa;
+  text-decoration: none;
+  margin: 0 2px;
+}
+/* Contact Us Page Styles */
+.contact-section {
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.contact-form label {
+  text-align: left;
+  font-weight: bold;
+
+}
+
+.contact-form input, 
+.contact-form textarea, 
+.contact-form button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+}
+
+.contact-form input, 
+.contact-form textarea {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact-form button {
+  background-color: #5410d4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #5410d4;
+}
+
+
+.nav-links a.active {
+  color: #fff;
+  background-color: #5410d4;
+  border-radius: 10px;
+}
+
+/* Background image for login page */
+.login-page {
+  background-image: url('../images/login3.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Background image for contact page */
+.contact-page {
+  background-image: url('../images/contact.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Background image for chat page */
+.chat-page {
+  background-image: url('../images/chat.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+/* Background image for register page */
+.register-page {
+  background-image: url('../images/register1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Background image for profile page */
+.profile-page {
+  background-image: url('../images/profile.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.chat-selection {
+  text-align: center;
+  margin: 150px;
+}
+
+.chat-options button {
+  padding: 50px 60px;
+  margin: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.chat-container {
+  margin: 10px auto;
+  max-width: 600px;
+}
+
+.chat-log {
+  background-color: #f4f4f9;
+  padding: 15px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.chat-input {
+  display: flex;
+  margin-top: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.chat-input button {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+.message {
+  margin: 5px 0;
+}
+
+.user-message {
+  text-align: right;
+  color: #333;
+}
+
+.bot-message {
+  text-align: left;
+  color: #5410d4;
+}
+
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 120vh;
+  margin: 0;
+}
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 120vh;
+  margin: 0;
+}
+
+.register-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 120vh;
+  margin: 0;
+}
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 120vh;
+  margin: 0;
+}
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 120vh;
+  margin: 0;
+}
+
+
+.support-page {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f5f5f5;
+  margin: 0;
+  background-image: url('../images/support.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Support section styling */
+.support-section {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.support-section h2 {
+  font-size: 2em;
+  color: #4b12bd;
+  margin-bottom: 40px;
+}
+
+/* Support options as cards */
+.support-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.support-option {
+  width: 250px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.support-option:hover {
+  transform: scale(1.05);
+}
+
+.support-option img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.support-option h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+  color: #333;
+}
+
+.support-option p {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.support-option button {
+  background-color: #5410d4;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.support-option button:hover {
+  background-color: #7a33e5;
+}
+
+.resources-page {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/resources1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+.resource-section {
+  text-align: center;
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.resource-section h2 {
+  font-size: 3em;
+  color: #5410d4;
+  margin-bottom: 60px;
+}
+
+.resource-category {
+  margin: 20px 0;
+}
+
+.resource-category h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Resource Grid */
+.resource-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.resource-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  padding: 50px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.resource-card:hover {
+  transform: scale(1.05);
+}
+
+.resource-card img {
+  width: 90%;
+  height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.resource-card h4 {
+  font-size: 1.2em;
+  color: #333;
+  margin: 10px 0;
+}
+
+.resource-card p {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.view-button {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #5410d4;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.view-button:hover {
+  background-color: #3d0ca3;
+}
+
+/* Tab Button Styles */
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+
+.tab-btn {
+  padding: 30px 40px;
+  border: none;
+  background-color: #ddd;
+  color: #333;
+  cursor: pointer;
+  font-size: 1em;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
+}
+
+.tab-btn.active {
+  background-color: #5410d4;
+  color: #fff;
+}
+
+.tab-btn:hover {
+  background-color: #5410d4;
+  color: #fff;
+}
+
+/* Tab Content Styling */
+.tab-content {
+  display: none; /* Hide all content by default */
+}
+
+.tab-content.active {
+  display: block; /* Show active tab content */
+}
+
+/* Resource Card Styles (as before) */
+.resource-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.resource-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.resource-card:hover {
+  transform: scale(1.05);
+}
+
+.resource-card img {
+  width: 50%;
+  height: 70px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.view-button {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  background-color: #5410d4;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.view-button:hover {
+  background-color: #3d0ca3;
+}
+
+/* Logout Page Styles */
+.logout-page {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/logout.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.logout-container {
+  text-align: center;
+  padding: 100px;  
+  max-width: 1200px;
+  margin: auto;
+} 
+
+.logout-container h2 {
+  font-size: 3em;
+  color: #4207cc;
+  margin-bottom: 60px;
+} 
+
+.logout-container p {     
+  font-size: 1.5em;                     
+  color: black; 
+  margin-bottom: 20px; 
+} 
+
+.logout-container a {
+  display: inline-block;
+  padding: 20px 40px;
+  background-color: #5410d4;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease;
+}
+
+.logout-container a:hover {
+  background-color: #3d0ca3;
+}
+
+/* Student Dashboard Styles */
+.student_dashboard-page {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/student.jpg');
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.greeting h1 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.greeting p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.dashboard-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dashboard-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.dashboard-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.progress-bar-container {
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 20px;
+  width: 70%; /* Adjust this dynamically */
+  background-color: #25ace2;
+  transition: width 0.3s ease;
+}
+
+
+.join-group-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.join-group-container h1 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+.groups-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.group-option {
+  margin-bottom: 40px;
+}
+
+.group-option h2 {
+  color: #34495e;
+}
+
+.group-status {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #ecf0f1;
+  border: 1px solid #d0d6db;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.group-status p {
+  margin: 5px 0;
+}
+
+form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+form input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #d0d6db;
+  border-radius: 5px;
+}
+
+form .btn {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+form .btn:hover {
+  background-color: #2980b9;
+}
+
+form .group-message {
+  margin-top: 10px;
+  color: #e74c3c;
+}
+
+/* Join Message */
+.join-message {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #2ecc71;
+  display: none;
+}
+
+/* Admin dashboard Styles */
+.admin-dashboard-page {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/admin.jpg');
+  color: rgb(245, 236, 236);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-container {
+  display: flex; /* Use flexbox layout */
+  justify-content: space-between; /* Evenly space the containers */
+  flex-wrap: wrap; /* Allow wrapping if content overflows */
+  gap: 2rem; /* Add space between containers */
+  margin-top: auto; /* Push containers to the bottom */
+  padding: 2rem;
+}
+
+.dashboard-card {
+  flex: 1; /* Allow cards to grow and shrink equally */
+  max-width: calc(33.33% - 2rem); /* Adjust width to fit in a single row */
+  color: black;
+  min-width: 150px; /* Set a minimum width for smaller screens */
+  background-color: rgba(250, 244, 244, 0.8); /* Remove the white background */
+  border: 1px solid #ccc; /* Optional: Add a border for structure */
+  box-shadow: none; /* Optional: Remove any shadow for a clean look */
+  padding: 1rem;
+  border-radius: 8px; /* Optional: Slightly round the edges */
+} 
+
+
+@media (max-width: 768px) {
+  .dashboard-card {
+    max-width: 100%; /* Stack cards vertically on smaller screens */
+  }
+}
+
+.dashboard-card h3 {
+  margin: 0 0 1rem;
+  color: #007bff;
+}
+
+.dashboard-card p {
+  margin: 0 0 1rem;
+  color: #555;
+}
+
+.dashboard-card button,
+#resource-form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dashboard-card button:hover,
+#resource-form button:hover {
+  background-color: #0056b3;
+}
+
+#resource-form input {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button, .btn {
+  background-color: #4CAF50; /* Change this for a different color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  text-decoration: none; /* For <a> links */
+  display: inline-block;
+}
+
+button:hover, .btn:hover {
+  background-color: #45a049; /* Hover color */
+}
+
+.feedback-page, .counsellor-page {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.feedback-container, .counsellor-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.feedback-form label, .feedback-form input, .feedback-form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.feedback-form input, .feedback-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.feedback-form button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.counsellor-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.counsellor-card {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.counsellor-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.counsellor-card button {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.counsellor-card button:hover {
+  background-color: #0056b3;
+}
+
+.counsellor_dashboard_page {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: black;
+    background-image: url('../images/counsellor_dashboard.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+.welcome h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.welcome p {
+  font-size: 18px;
+  color: #555;
+}
+
+/* Dashboard Stats */
+.dashboard-stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  flex: 1;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 32px;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+/* Recent Appointments */
+.recent-appointments {
+  margin-top: 50px;
+}
+
+.recent-appointments h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #e8f5e9;
+}
+@media (max-width: 768px) {
+  .dashboard-stats {
+      flex-direction: column;
+  }
+
+  .card {
+      margin-bottom: 20px;
+  }
+}
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counselors - Wellbeing Wonders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body class="counsellor-page">
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+
+        <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="U-LOVE Wonders Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home')}}">Home</a></li>
+        <li><a href="{{ url_for('resources')}}">Resources</a></li>
+        <li><a href="{{ url_for('support')}}">Support</a></li>
+        <li><a href="{{ url_for('profile')}}">Profile</a></li>
+        <li><a href="{{ url_for('chat')}}">Chat</a></li>
+        <li><a href="{{ url_for('counsellor')}}" class ="active">Counselors</a></li>
+        <li><a href="{{ url_for('feedback')}}">Feedback</a></li>
+        <li><a href ="{{ url_for('contact')}}">Contact Us</a></li>
+        <li><a href="{{ url_for('login')}}">Login</a></li><li><a href="{{ url_for('logout')}}">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="counsellor-container">
+      <h1>Meet Our Counselors</h1>
+      <p>Choose the right counselor for your needs and book a session today!</p>
+      <div class="counsellor-list">
+        <div class="counsellor-card">
+          <img src="{{ url_for('static', filename='images/counsellor1.jpg')}}" alt="Counsellor 1">
+          <h3>Dr. Jeanne Pearie</h3>
+          <p>Specialist in stress management and emotional well-being.</p>
+          <button class="btn">Book a Session</button>
+        </div>
+        <div class="counsellor-card">
+          <img src="{{ url_for('static', filename='images/counsellor2.jpg')}}" alt="Counsellor 2">
+          <h3>Dr. Rulinda Kwizera</h3>
+          <p>Expert in academic counseling and relationship advice.</p>
+          <button class="btn">Book a Session</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="U-LOVE Wonders Logo">
+      </div>
+      
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>Email: uloveclub@gmail.com</p>
+        <p>Phone: +250791381714</p>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <p> @ulove.alu</p><a href="#"><img src="{{ url_for('static', filename='images/instagram.jpeg')}}" alt="Instagram"></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 U-LOVE Wonders. All rights reserved.</p>
+      <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+    </div>
+  </footer>
+</body>
+</html>

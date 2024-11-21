@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources - Wellbeing Wonders</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+</head>
+<body class ="resources-page">
+  <header>
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="U-LOVE Wonders Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="{{ url_for('home')}}">Home</a></li>
+        <li><a href="{{ url_for('register')}}">Register</a></li>
+        <li><a href="{{ url_for('resources')}}" class="active">Resources</a></li>
+        <li><a href="{{ url_for('contact')}}">Contact Us</a></li>
+        <li><a href="{{ url_for('login')}}">Login</a></li>
+        <li><a href="{{ url_for('logout')}}">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="resource-section">
+      <h2>Explore Our Resources</h2>
+
+      <!-- Tab Buttons -->
+      <div class="tab-buttons">
+        <button class="tab-btn active" onclick="openTab(event, 'videos')">Videos</button>
+        <button class="tab-btn" onclick="openTab(event, 'articles')">Articles</button>
+        <button class="tab-btn" onclick="openTab(event, 'audio')">Audio</button>
+      </div>
+
+      <!-- Tab Content -->
+      <div id="videos" class="tab-content">
+        <div class="resource-grid">
+          <!-- Video Resource Cards -->
+          <div class="resource-card">
+            <p>Videos of our uplifting sessions</p>
+            <a href="#" class="view-button">Watch Now</a>
+          </div>
+          <!-- Add more video cards here -->
+        </div>
+      </div>
+
+      <div id="articles" class="tab-content" style="display: none;">
+        <div class="resource-grid">
+          <!-- Article Resource Cards -->
+          <div class="resource-card">
+            <p>Credible mental health articles</p>
+            <a href="#" class="view-button">Read Now</a>
+          </div>
+          <!-- Add more article cards here -->
+        </div>
+      </div>
+
+      <div id="audio" class="tab-content" style="display: none;">
+        <div class="resource-grid">
+          <!-- Audio Resource Cards -->
+          <div class="resource-card">
+            <p>The best playlist that suits your mood</p>
+            <a href="#" class="view-button">Listen Now</a>
+          </div>
+          <!-- Add more audio cards here -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+</body>
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="Wellbeing Wonders Logo">
+    </div>
+    
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>Email: uloveclub@gmail.com</p>
+      <p>Phone: +250791381714</p>
+    </div>
+    <div class="footer-social">
+      <h4>Follow Us</h4>
+      <p> @ulove.alu</p><a href="#"><img src="{{ url_for('static', filename='images/instagram.jpeg')}}" alt="Instagram"></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 U-LOVE Wonders. All rights reserved.</p>
+    <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+  </div>
+</footer>
+</html>
