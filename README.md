@@ -155,16 +155,9 @@ pip install pytest
 Deployment
 If you are ready to deploy your application, consider using platforms like Netfly, AWS, or Google Cloud.
 
-Deploy to Heroku:
+Deploy to Netlify.
 
-Make sure to set up your environment variables (e.g., SECRET_KEY, DATABASE_URL) in Heroku.
-
-Push your changes to the Heroku Git remote:
-
-bash
-Copy code
-git push heroku master
-For more details, check out the Heroku deployment guide.
+Access, github through netlify and deploy the web application
 
 Contributing
 If you would like to contribute to this project, please follow these steps:
