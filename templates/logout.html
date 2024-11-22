@@ -28,8 +28,8 @@
     <div class="logout-container">
       <h1>You've Logged Out</h1>
       <h1>Thank you for using U-LOVE Wonders. We hope to see you again soon!</h1>
-      <a href="login.html" class="btn">Log Back In</a>
-      <a href="index.html" class="btn-secondary">Return to Home</a>
+      <a href="{{ url_for('login')}}" class="btn">Log Back In</a>
+      <a href="{{ url_for('home')}}" class="btn-secondary">Return to Home</a>
     </div>
   </main>
 </body>
