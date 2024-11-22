@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Session</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+    <header>
+        <nav class="navbar">
+          <a href="index.html" class="logo">
+    
+            <img src="{{ url_for('static', filename='images/logo.jpg')}}" alt="U-LOVE Wonders Logo">
+          </a>
+          <ul class="nav-links">
+            <li><a href="{{ url_for('home')}}" class="active">Home</a></li>
+            <li><a href="{{ url_for('resources')}}">Resources</a></li>
+            <li><a href ="{{ url_for('contact')}}">Contact Us</a></li>
+          </ul>
+        </nav>
+      </header>
+<head class="book-session-page">
+  <main class="book-session-main">
+    <h1>Book a Session</h1>
+    <div class="form-container">
+      <form action="{{ url_for('process_booking') }}" method="post" class="booking-form">
+        <label for="session-date">Choose a Date:</label>
+        <input type="date" id="session-date" name="session_date" required>
+
+        <label for="session-time">Choose a Time:</label>
+        <input type="time" id="session-time" name="session_time" required>
+
+        <label for="additional-notes">Additional Notes:</label>
+        <textarea id="additional-notes" name="notes" rows="4" placeholder="Add any specific details or requests"></textarea>
+
+        <button type="submit" class="button">Confirm Booking</button>
+      </form>
+    </div>
+  </main>
+</body>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Wellbeing Wonders Logo">
+      </div>
+      
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>Email: uloveclub@gmail.com</p>
+        <p>Phone: +250791381714</p>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <p> @ulove.alu</p><a href="#"><img src="{{ url_for('static', filename='images/instagram.jpeg') }}" alt="Instagram"></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 U-LOVE Wonders. All rights reserved.</p>
+      <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a>
+    </div>
+  </footer> 
+
+</html>

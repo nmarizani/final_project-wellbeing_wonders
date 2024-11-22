@@ -35,13 +35,13 @@
           <img src="{{ url_for('static', filename='images/counsellor1.jpg')}}" alt="Counsellor 1">
           <h3>Dr. Jeanne Pearie</h3>
           <p>Specialist in stress management and emotional well-being.</p>
-          <button class="btn">Book a Session</button>
+          <a href="{{ url_for('book_session') }}" class="btn">Book a Session</a>
         </div>
         <div class="counsellor-card">
           <img src="{{ url_for('static', filename='images/counsellor2.jpg')}}" alt="Counsellor 2">
           <h3>Dr. Rulinda Kwizera</h3>
           <p>Expert in academic counseling and relationship advice.</p>
-          <button class="btn">Book a Session</button>
+          <a href="{{ url_for('book_session') }}" class="btn">Book a Session</a>
         </div>
       </div>
     </div>

@@ -3,12 +3,13 @@ from flask import Flask, render_template, redirect, url_for, request, flash, ses
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from forms import RegistrationForm, LoginForm  # Ensure forms are correctly defined
+from forms import LoginForm, RegistrationForm, submit
 from flask_migrate import Migrate  
 import logging  
 import os   
 from dotenv import load_dotenv
 from werkzeug.security import check_password_hash
+
 
 
 
@@ -19,7 +20,28 @@ def create_app():
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database_file.db'  # Modify to your database URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Optional, to disable modification tracking
 app.config['SECRET_KEY'] = '28bc6cce497a59b9fccae6890f4067f718f375230002a7c3'  # Required for sessions and flash messages
+from flask_mail import Mail, Message
 
+# Configure email settings
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'uloveclub@gail.com'  # Replace with your email
+app.config['MAIL_PASSWORD'] = 'U-LOVE2023'     # Replace with your email password
+app.config['MAIL_DEFAULT_SENDER'] = ('U-LOVE Wonders', 'uloveclub@gmail.com')
+
+mail = Mail(app)
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = 'uloveclub@gmail.com'
+app.config['MAIL_PASSWORD'] = 'U-LOVE2023'
+
+def send_feedback_email(feedback_message):
+    msg = Message('New Feedback Submission', recipients=['uloveclub@gmail.com'])
+    msg.body = f"Feedback: {feedback_message}"
+    mail.send(msg)
 # Initialize Extensions
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -58,64 +80,49 @@ def load_user(user_id):
 def home():
     return render_template('index.html')
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
-        logging.debug("Form is valid")
-        # Extract form data
         username = form.username.data
         email = form.email.data
         password = form.password.data
-        role = form.role.data  # Ensure your form includes a role field
+        role = form.role.data
 
-        logging.debug(f"Form data - Username: {username}, Email: {email}, Password: {password}, Role: {role}")
-
-        # Check for duplicate users
         existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
         if existing_user:
-            flash("Username or email already exists. Please use a different one.", "danger")
+            flash("Username or email already exists. Please proceed to login.", "danger")
             return redirect(url_for('register'))
 
         try:
-            # Create a new user instance and hash the password
             user = User(username=username, email=email, role=role)
             user.set_password(password)
 
-            # Save the user to the database
             db.session.add(user)
             db.session.commit()
-            flash("Registration successful!", "success")
-            # Log the user in immediately after registration
             login_user(user)
-            print(f"Logged in user: {user.username}, Role: {user.role}")
 
-            # Redirect based on user's role
-            if user.role == 'admin':
-                return redirect(url_for('admin_dashboard'))
-            elif user.role == 'peer_supporter':
-                return redirect(url_for('peer_supporter_dashboard'))
-            else:
-                return redirect(url_for('student_dashboard'))
+            # Redirect all users to a single dashboard
+            flash("Registration successful! Please log in to continue.", "success")
+            return redirect(url_for('main_dashboard'))
 
         except Exception as e:
-            logging.error(f"An error occurred during registration: {str(e)}")
             db.session.rollback()
-            flash(f"An error occurred: {str(e)}", "danger")
+            logging.error(f"Error during registration: {e}")
+            flash(f"An error occurred: {e}", "danger")
             return redirect(url_for('register'))
     
-    else:
-        if form.errors:
-            logging.debug("Form errors")
-            flash("Please check the form for errors.", "danger")
+    if form.errors:
+        flash("Please check the form for errors.", "danger")
     
     return render_template('register.html', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('student_dashboard'))  # Redirect if already logged in
+        return redirect(url_for('main_dashboard'))  # Redirect if already logged in
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -124,19 +131,16 @@ def login():
             login_user(user)
             flash('Login successful!', 'success')
 
-            # Redirect based on user role
-            role_redirects = {
-                'admin': 'admin_dashboard',
-                'counsellor': 'counsellor_dashboard',
-                'peer_supporter': 'peer_supporter_dashboard',
-                'student': 'student_dashboard'
-
-            }
-            return redirect(url_for(role_redirects.get(user.role, 'dashboard')))
+            # Redirect all users to a single dashboard
+            return redirect(url_for('main_dashboard'))
         else:
             flash('Invalid username or password', 'danger')
 
-    return render_template('peer_support_dashboard.html', form=form)
+    return render_template('main_dashboard.html', form=form)
+
+@app.route('/main_dashboard')
+def main_dashboard():
+    return render_template('main_dashboard.html', role=current_user.role)
 
 @app.route('/logout')
 def logout():
@@ -155,9 +159,28 @@ def logout_page():
 def support_group():
     return render_template('support_group.html')
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html')      
+     if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+
+        # Create and send the email
+        try:
+            msg = Message(
+                subject="New Contact Us Message",
+                sender=app.config['MAIL_DEFAULT_SENDER'],
+                recipients=['uloveclub@gmail'],  # Replace with your receiving email
+                body=f"Message from {name} ({email}):\n\n{message}"
+            )
+            mail.send(msg)
+            flash("Your message has been sent successfully!", "success")
+        except Exception as e:
+            flash(f"Failed to send message. Error: {e}", "danger")
+
+        return redirect(url_for('contact'))
+     return render_template('contact.html')     
 
 @app.route('/resources/')
 def resources():
@@ -179,39 +202,56 @@ def chat():
 def feedback():
     return render_template('feedback.html')
 
+
+@app.route('/process_feedback', methods=['POST'])
+def process_feedback():
+    message = request.form['message']
+    send_feedback_email( message)
+    flash('Thank you for your feedback!', 'success')
+    return redirect(url_for('feedback'))
+    
+
 @app.route('/counsellor')
 def counsellor():
     return render_template('counsellor.html')
 
 @app.route('/peer_support_dashboard')
-@login_required
 def peer_dashboard():
-    if current_user.role != 'peer_supporter':
-        flash('Unauthorized access', 'danger')
-        return redirect(url_for('login'))
     return render_template('peer_support_dashboard.html')
 
 @app.route('/student_dashboard')
-@login_required
 def student_dashboard():
-    if current_user.role != 'student':
-        flash('Unauthorized access', 'danger')
-        return redirect(url_for('login')) 
     return render_template('student_dashboard.html')
 
-@app.route('/admin-dashboard' , methods=['GET'])
-@login_required
+@app.route('/admin_dashboard')
 def admin_dashboard():
-     print(f"Is user authenticated? {current_user.is_authenticated}")
-     print(f"User ID: {getattr(current_user, 'id', None)}")
-     print(f"User role: {getattr(current_user, 'role', None)}")
-     if current_user.role != 'admin':
-        flash('Unauthorized access', 'danger')
-        return redirect(url_for('login'))
-     return render_template('admin_dashboard.html')
+ return render_template('admin_dashboard.html')
+
+@app.route('/counsellor_dashboard')
+def counsellor_dashboard():
+    return render_template('counsellor_dashboard.html')
+
+@app.route('/book_session')
+def book_session():
+    return render_template('book_session.html')
+
+@app.route('/process_booking', methods=['POST'])
+def process_booking():
+    # Extract data from the form submission
+    session_date = request.form.get('session_date')
+    session_time = request.form.get('session_time')
+    notes = request.form.get('notes', '')
+
+    # Here, save the booking to the database or process it further if required.
+    # For now, we'll just flash a success message.
+    flash(f"Booking successful for {session_date} at {session_time}!", "success")
+    
+    # Redirect the user back to their dashboard or another page
+    return redirect(url_for('counsellor'))
 
 # Initialize the database and run the app
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
+

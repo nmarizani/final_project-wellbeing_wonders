@@ -22,6 +22,16 @@
     </nav>
   </header>
   <main>
+      <!-- Flash message section -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
     <form method="POST" action="{{ url_for('register') }}">
       {{ form.hidden_tag() }}
       <div>
@@ -46,7 +56,7 @@
       </div>
       </select>
       <p>After registration, a verification email will be sent to your inbox.</p>
-      <button type="submit">Register</button>
+      <button type="submit" class="submit-button">Register</button>
     </form>
     <p>Already have an account? <a href="{{ url_for('login')}}">Login here</a> to have more access.
   </main>

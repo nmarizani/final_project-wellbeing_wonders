@@ -1287,4 +1287,425 @@ table tr:hover {
       margin-bottom: 20px;
   }
 }
+/* General reset for margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body background image */
+.main_dashboard-page {
+  font-family: 'Arial', sans-serif;
+  background-image: url('../images/main_dashboard.jpg');
+  background-size: cover; /* Ensures the image covers the entire page */
+  background-position: center; /* Centers the background image */
+  background-attachment: fixed; /* Keeps the background fixed while scrolling */
+  color: #333;
+  height: 100vh; /* Makes sure the body takes the full height */
+}
+
+/* Main page styling */
+.main_dashboard-page .main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8); /* White background with transparency */
+  border-radius: 10px;
+}
+
+.dashboard-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
+
+/* Other styles remain the same */
+.dashboard-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #4A90E2;
+}
+
+.dashboard-container p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #777;
+}
+
+.dashboard-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.dashboard-link {
+  display: inline-block;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4A90E2;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dashboard-link:hover {
+  background-color: #357ABD;
+  transform: translateY(-5px);
+}
+
+.dashboard-link:active {
+  transform: translateY(0);
+}
+
+/* Responsive styling for mobile devices */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 20px;
+  }
+
+  .dashboard-container h1 {
+    font-size: 2rem;
+  }
+
+  .dashboard-container p {
+    font-size: 1rem;
+  }
+
+  .dashboard-links {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .dashboard-link {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Flash messages styles */
+.flashes {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.flashes li {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.flashes .success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.flashes .danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+
+/* General styling */
+body.peer_support_dashboard-page {
+  font-family: Arial, sans-serif;
+  background: url('../images/resources.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-main {
+  padding: 20px;
+}
+
+.peer_support_dashboard main h1{
+  color:black
+}
+.dashboard-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  background-color: transparent;
+}
+
+/* Active Chats Section */
+.active-chats,
+.peer-list,
+.announcements {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  padding: 20px;
+  flex: 1 1 30%;
+  min-width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.active-chats h2,
+.peer-list h2,
+.announcements h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color:blue
+}
+
+.active-chats p {
+  margin-bottom: 15px;
+  color: white
+}
+
+.active-chats a {
+  list-style: none;
+  padding: 0;
+  color: white
+}
+
+
+.button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* Peer List Section */
+.peer-list {
+  position: relative;
+  color: white
+}
+.peer-list p {
+  margin-bottom: 15px;
+  color: white
+}
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.peer-list-container {
+  list-style: none;
+  padding: 0;
+}
+
+.peer-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.peer-item:last-child {
+  border-bottom: none;
+}
+
+.chat-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-button:hover {
+  background-color: #1e7e34;
+}
+
+/* Announcements Section */
+.announcements {
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.announcements p {
+  color: white;
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+}
+
+body.book-session-page {
+  font-family: Arial, sans-serif;
+  background: url('../images/book-session-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.book-session-main {
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.booking-form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.booking-form input,
+.booking-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.booking-form .button {
+  display: block;
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.booking-form .button:hover {
+  background-color: #0056b3;
+}
+/* Main Body */
+body.feedback-page {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fc;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container */
+.feedback-container {
+  width: 80%;
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.feedback-container h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #4CAF50;
+  margin-bottom: 1rem;
+}
+
+.feedback-container p {
+  text-align: center;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Styles */
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s;
+}
+
+.feedback-form input:focus,
+.feedback-form textarea:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.feedback-form button {
+  padding: 1rem;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.feedback-form button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .feedback-container {
+    width: 90%;
+  }
+
+  .feedback-form button {
+    padding: 0.8rem;
+  }
+}
 

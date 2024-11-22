@@ -194,6 +194,14 @@
         "documentation": {}
     },
     {
+        "label": "LoginForm",
+        "importPath": "forms",
+        "description": "forms",
+        "isExtraImport": true,
+        "detail": "forms",
+        "documentation": {}
+    },
+    {
         "label": "RegistrationForm",
         "importPath": "forms",
         "description": "forms",
@@ -202,7 +210,7 @@
         "documentation": {}
     },
     {
-        "label": "LoginForm",
+        "label": "submit",
         "importPath": "forms",
         "description": "forms",
         "isExtraImport": true,
@@ -240,6 +248,22 @@
         "description": "werkzeug.security",
         "isExtraImport": true,
         "detail": "werkzeug.security",
+        "documentation": {}
+    },
+    {
+        "label": "Mail",
+        "importPath": "flask_mail",
+        "description": "flask_mail",
+        "isExtraImport": true,
+        "detail": "flask_mail",
+        "documentation": {}
+    },
+    {
+        "label": "Message",
+        "importPath": "flask_mail",
+        "description": "flask_mail",
+        "isExtraImport": true,
+        "detail": "flask_mail",
         "documentation": {}
     },
     {
@@ -486,7 +510,16 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def create_app():\n    app = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database_file.db'  # Modify to your database URI\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Optional, to disable modification tracking\napp.config['SECRET_KEY'] = '28bc6cce497a59b9fccae6890f4067f718f375230002a7c3'  # Required for sessions and flash messages\n# Initialize Extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = 'login'  # Redirect unauthorized users to login",
+        "peekOfCode": "def create_app():\n    app = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database_file.db'  # Modify to your database URI\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Optional, to disable modification tracking\napp.config['SECRET_KEY'] = '28bc6cce497a59b9fccae6890f4067f718f375230002a7c3'  # Required for sessions and flash messages\nfrom flask_mail import Mail, Message\n# Configure email settings\napp.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 587\napp.config['MAIL_USE_TLS'] = True",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "send_feedback_email",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def send_feedback_email(feedback_message):\n    msg = Message('New Feedback Submission', recipients=['uloveclub@gmail.com'])\n    msg.body = f\"Feedback: {feedback_message}\"\n    mail.send(msg)\n# Initialize Extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = 'login'  # Redirect unauthorized users to login\nlogin_manager.login_message_category = 'info'",
         "detail": "app",
         "documentation": {}
     },
@@ -513,7 +546,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def home():\n    return render_template('index.html')\n@app.route('/register', methods=['GET', 'POST'])\ndef register():\n    form = RegistrationForm()\n    if form.validate_on_submit():\n        logging.debug(\"Form is valid\")\n        # Extract form data\n        username = form.username.data\n        email = form.email.data",
+        "peekOfCode": "def home():\n    return render_template('index.html')\n@app.route('/register', methods=['GET', 'POST'])\ndef register():\n    form = RegistrationForm()\n    if form.validate_on_submit():\n        username = form.username.data\n        email = form.email.data\n        password = form.password.data\n        role = form.role.data",
         "detail": "app",
         "documentation": {}
     },
@@ -522,7 +555,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def register():\n    form = RegistrationForm()\n    if form.validate_on_submit():\n        logging.debug(\"Form is valid\")\n        # Extract form data\n        username = form.username.data\n        email = form.email.data\n        password = form.password.data\n        role = form.role.data  # Ensure your form includes a role field\n        logging.debug(f\"Form data - Username: {username}, Email: {email}, Password: {password}, Role: {role}\")",
+        "peekOfCode": "def register():\n    form = RegistrationForm()\n    if form.validate_on_submit():\n        username = form.username.data\n        email = form.email.data\n        password = form.password.data\n        role = form.role.data\n        existing_user = User.query.filter((User.username == username) | (User.email == email)).first()\n        if existing_user:\n            flash(\"Username or email already exists. Please proceed to login.\", \"danger\")",
         "detail": "app",
         "documentation": {}
     },
@@ -531,7 +564,16 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def login():\n    if current_user.is_authenticated:\n        return redirect(url_for('student_dashboard'))  # Redirect if already logged in\n    form = LoginForm()\n    if form.validate_on_submit():\n        user = User.query.filter_by(username=form.username.data).first()\n        if user and user.check_password(form.password.data):\n            login_user(user)\n            flash('Login successful!', 'success')\n            # Redirect based on user role",
+        "peekOfCode": "def login():\n    if current_user.is_authenticated:\n        return redirect(url_for('main_dashboard'))  # Redirect if already logged in\n    form = LoginForm()\n    if form.validate_on_submit():\n        user = User.query.filter_by(username=form.username.data).first()\n        if user and user.check_password(form.password.data):\n            login_user(user)\n            flash('Login successful!', 'success')\n            # Redirect all users to a single dashboard",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "main_dashboard",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def main_dashboard():\n    return render_template('main_dashboard.html', role=current_user.role)\n@app.route('/logout')\ndef logout():\n    if 'user_id' in session:\n        session.pop('user_id', None)    \n        session.pop('role', None)\n    return render_template('logout.html')\n@app.route('/logout_page')\ndef logout_page():",
         "detail": "app",
         "documentation": {}
     },
@@ -549,7 +591,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def logout_page():\n    logout_user()\n    return render_template('logout.html')\n@app.route('/support_group')\ndef support_group():\n    return render_template('support_group.html')\n@app.route('/contact')\ndef contact():\n    return render_template('contact.html')      \n@app.route('/resources/')",
+        "peekOfCode": "def logout_page():\n    logout_user()\n    return render_template('logout.html')\n@app.route('/support_group')\ndef support_group():\n    return render_template('support_group.html')\n@app.route('/contact', methods=['GET', 'POST'])\ndef contact():\n     if request.method == 'POST':\n        name = request.form.get('name')",
         "detail": "app",
         "documentation": {}
     },
@@ -558,7 +600,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def support_group():\n    return render_template('support_group.html')\n@app.route('/contact')\ndef contact():\n    return render_template('contact.html')      \n@app.route('/resources/')\ndef resources():\n    return render_template('resources.html')\n@app.route('/profile')\ndef profile():",
+        "peekOfCode": "def support_group():\n    return render_template('support_group.html')\n@app.route('/contact', methods=['GET', 'POST'])\ndef contact():\n     if request.method == 'POST':\n        name = request.form.get('name')\n        email = request.form.get('email')\n        message = request.form.get('message')\n        # Create and send the email\n        try:",
         "detail": "app",
         "documentation": {}
     },
@@ -567,7 +609,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def contact():\n    return render_template('contact.html')      \n@app.route('/resources/')\ndef resources():\n    return render_template('resources.html')\n@app.route('/profile')\ndef profile():\n    return render_template('profile.html')\n@app.route('/support')\ndef support():",
+        "peekOfCode": "def contact():\n     if request.method == 'POST':\n        name = request.form.get('name')\n        email = request.form.get('email')\n        message = request.form.get('message')\n        # Create and send the email\n        try:\n            msg = Message(\n                subject=\"New Contact Us Message\",\n                sender=app.config['MAIL_DEFAULT_SENDER'],",
         "detail": "app",
         "documentation": {}
     },
@@ -594,7 +636,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def support():\n    return render_template('support.html')  \n@app.route('/chat') \ndef chat():\n    return render_template('chat.html')\n@app.route('/feedback') \ndef feedback():\n    return render_template('feedback.html')\n@app.route('/counsellor')\ndef counsellor():",
+        "peekOfCode": "def support():\n    return render_template('support.html')  \n@app.route('/chat') \ndef chat():\n    return render_template('chat.html')\n@app.route('/feedback') \ndef feedback():\n    return render_template('feedback.html')\n@app.route('/process_feedback', methods=['POST'])\ndef process_feedback():",
         "detail": "app",
         "documentation": {}
     },
@@ -603,7 +645,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def chat():\n    return render_template('chat.html')\n@app.route('/feedback') \ndef feedback():\n    return render_template('feedback.html')\n@app.route('/counsellor')\ndef counsellor():\n    return render_template('counsellor.html')\n@app.route('/peer_support_dashboard')\n@login_required",
+        "peekOfCode": "def chat():\n    return render_template('chat.html')\n@app.route('/feedback') \ndef feedback():\n    return render_template('feedback.html')\n@app.route('/process_feedback', methods=['POST'])\ndef process_feedback():\n    message = request.form['message']\n    send_feedback_email( message)\n    flash('Thank you for your feedback!', 'success')",
         "detail": "app",
         "documentation": {}
     },
@@ -612,7 +654,16 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def feedback():\n    return render_template('feedback.html')\n@app.route('/counsellor')\ndef counsellor():\n    return render_template('counsellor.html')\n@app.route('/peer_support_dashboard')\n@login_required\ndef peer_dashboard():\n    if current_user.role != 'peer_supporter':\n        flash('Unauthorized access', 'danger')",
+        "peekOfCode": "def feedback():\n    return render_template('feedback.html')\n@app.route('/process_feedback', methods=['POST'])\ndef process_feedback():\n    message = request.form['message']\n    send_feedback_email( message)\n    flash('Thank you for your feedback!', 'success')\n    return redirect(url_for('feedback'))\n@app.route('/counsellor')\ndef counsellor():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "process_feedback",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def process_feedback():\n    message = request.form['message']\n    send_feedback_email( message)\n    flash('Thank you for your feedback!', 'success')\n    return redirect(url_for('feedback'))\n@app.route('/counsellor')\ndef counsellor():\n    return render_template('counsellor.html')\n@app.route('/peer_support_dashboard')\ndef peer_dashboard():",
         "detail": "app",
         "documentation": {}
     },
@@ -621,7 +672,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def counsellor():\n    return render_template('counsellor.html')\n@app.route('/peer_support_dashboard')\n@login_required\ndef peer_dashboard():\n    if current_user.role != 'peer_supporter':\n        flash('Unauthorized access', 'danger')\n        return redirect(url_for('login'))\n    return render_template('peer_support_dashboard.html')\n@app.route('/student_dashboard')",
+        "peekOfCode": "def counsellor():\n    return render_template('counsellor.html')\n@app.route('/peer_support_dashboard')\ndef peer_dashboard():\n    return render_template('peer_support_dashboard.html')\n@app.route('/student_dashboard')\ndef student_dashboard():\n    return render_template('student_dashboard.html')\n@app.route('/admin_dashboard')\ndef admin_dashboard():",
         "detail": "app",
         "documentation": {}
     },
@@ -630,7 +681,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def peer_dashboard():\n    if current_user.role != 'peer_supporter':\n        flash('Unauthorized access', 'danger')\n        return redirect(url_for('login'))\n    return render_template('peer_support_dashboard.html')\n@app.route('/student_dashboard')\n@login_required\ndef student_dashboard():\n    if current_user.role != 'student':\n        flash('Unauthorized access', 'danger')",
+        "peekOfCode": "def peer_dashboard():\n    return render_template('peer_support_dashboard.html')\n@app.route('/student_dashboard')\ndef student_dashboard():\n    return render_template('student_dashboard.html')\n@app.route('/admin_dashboard')\ndef admin_dashboard():\n return render_template('admin_dashboard.html')\n@app.route('/counsellor_dashboard')\ndef counsellor_dashboard():",
         "detail": "app",
         "documentation": {}
     },
@@ -639,7 +690,7 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def student_dashboard():\n    if current_user.role != 'student':\n        flash('Unauthorized access', 'danger')\n        return redirect(url_for('login')) \n    return render_template('student_dashboard.html')\n@app.route('/admin-dashboard' , methods=['GET'])\n@login_required\ndef admin_dashboard():\n     print(f\"Is user authenticated? {current_user.is_authenticated}\")\n     print(f\"User ID: {getattr(current_user, 'id', None)}\")",
+        "peekOfCode": "def student_dashboard():\n    return render_template('student_dashboard.html')\n@app.route('/admin_dashboard')\ndef admin_dashboard():\n return render_template('admin_dashboard.html')\n@app.route('/counsellor_dashboard')\ndef counsellor_dashboard():\n    return render_template('counsellor_dashboard.html')\n@app.route('/book_session')\ndef book_session():",
         "detail": "app",
         "documentation": {}
     },
@@ -648,7 +699,34 @@
         "kind": 2,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "def admin_dashboard():\n     print(f\"Is user authenticated? {current_user.is_authenticated}\")\n     print(f\"User ID: {getattr(current_user, 'id', None)}\")\n     print(f\"User role: {getattr(current_user, 'role', None)}\")\n     if current_user.role != 'admin':\n        flash('Unauthorized access', 'danger')\n        return redirect(url_for('login'))\n     return render_template('admin_dashboard.html')\n# Initialize the database and run the app\nif __name__ == '__main__':",
+        "peekOfCode": "def admin_dashboard():\n return render_template('admin_dashboard.html')\n@app.route('/counsellor_dashboard')\ndef counsellor_dashboard():\n    return render_template('counsellor_dashboard.html')\n@app.route('/book_session')\ndef book_session():\n    return render_template('book_session.html')\n@app.route('/process_booking', methods=['POST'])\ndef process_booking():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "counsellor_dashboard",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def counsellor_dashboard():\n    return render_template('counsellor_dashboard.html')\n@app.route('/book_session')\ndef book_session():\n    return render_template('book_session.html')\n@app.route('/process_booking', methods=['POST'])\ndef process_booking():\n    # Extract data from the form submission\n    session_date = request.form.get('session_date')\n    session_time = request.form.get('session_time')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "book_session",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def book_session():\n    return render_template('book_session.html')\n@app.route('/process_booking', methods=['POST'])\ndef process_booking():\n    # Extract data from the form submission\n    session_date = request.form.get('session_date')\n    session_time = request.form.get('session_time')\n    notes = request.form.get('notes', '')\n    # Here, save the booking to the database or process it further if required.\n    # For now, we'll just flash a success message.",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "process_booking",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def process_booking():\n    # Extract data from the form submission\n    session_date = request.form.get('session_date')\n    session_time = request.form.get('session_time')\n    notes = request.form.get('notes', '')\n    # Here, save the booking to the database or process it further if required.\n    # For now, we'll just flash a success message.\n    flash(f\"Booking successful for {session_date} at {session_time}!\", \"success\")\n    # Redirect the user back to their dashboard or another page\n    return redirect(url_for('counsellor'))",
         "detail": "app",
         "documentation": {}
     },
@@ -657,7 +735,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app = Flask(__name__)\ndef create_app():\n    app = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database_file.db'  # Modify to your database URI\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Optional, to disable modification tracking\napp.config['SECRET_KEY'] = '28bc6cce497a59b9fccae6890f4067f718f375230002a7c3'  # Required for sessions and flash messages\n# Initialize Extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)",
+        "peekOfCode": "app = Flask(__name__)\ndef create_app():\n    app = Flask(__name__)\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database_file.db'  # Modify to your database URI\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Optional, to disable modification tracking\napp.config['SECRET_KEY'] = '28bc6cce497a59b9fccae6890f4067f718f375230002a7c3'  # Required for sessions and flash messages\nfrom flask_mail import Mail, Message\n# Configure email settings\napp.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 587",
         "detail": "app",
         "documentation": {}
     },
@@ -666,7 +744,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database_file.db'  # Modify to your database URI\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Optional, to disable modification tracking\napp.config['SECRET_KEY'] = '28bc6cce497a59b9fccae6890f4067f718f375230002a7c3'  # Required for sessions and flash messages\n# Initialize Extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = 'login'  # Redirect unauthorized users to login\nlogin_manager.login_message_category = 'info'\nmigrate = Migrate(app, db)",
+        "peekOfCode": "app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database_file.db'  # Modify to your database URI\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Optional, to disable modification tracking\napp.config['SECRET_KEY'] = '28bc6cce497a59b9fccae6890f4067f718f375230002a7c3'  # Required for sessions and flash messages\nfrom flask_mail import Mail, Message\n# Configure email settings\napp.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 587\napp.config['MAIL_USE_TLS'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gail.com'  # Replace with your email\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'     # Replace with your email password",
         "detail": "app",
         "documentation": {}
     },
@@ -675,7 +753,7 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Optional, to disable modification tracking\napp.config['SECRET_KEY'] = '28bc6cce497a59b9fccae6890f4067f718f375230002a7c3'  # Required for sessions and flash messages\n# Initialize Extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = 'login'  # Redirect unauthorized users to login\nlogin_manager.login_message_category = 'info'\nmigrate = Migrate(app, db)\nlogin_manager = LoginManager(app)",
+        "peekOfCode": "app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Optional, to disable modification tracking\napp.config['SECRET_KEY'] = '28bc6cce497a59b9fccae6890f4067f718f375230002a7c3'  # Required for sessions and flash messages\nfrom flask_mail import Mail, Message\n# Configure email settings\napp.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 587\napp.config['MAIL_USE_TLS'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gail.com'  # Replace with your email\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'     # Replace with your email password\napp.config['MAIL_DEFAULT_SENDER'] = ('U-LOVE Wonders', 'uloveclub@gmail.com')",
         "detail": "app",
         "documentation": {}
     },
@@ -684,7 +762,124 @@
         "kind": 5,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "app.config['SECRET_KEY'] = '28bc6cce497a59b9fccae6890f4067f718f375230002a7c3'  # Required for sessions and flash messages\n# Initialize Extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = 'login'  # Redirect unauthorized users to login\nlogin_manager.login_message_category = 'info'\nmigrate = Migrate(app, db)\nlogin_manager = LoginManager(app)\n@login_manager.user_loader",
+        "peekOfCode": "app.config['SECRET_KEY'] = '28bc6cce497a59b9fccae6890f4067f718f375230002a7c3'  # Required for sessions and flash messages\nfrom flask_mail import Mail, Message\n# Configure email settings\napp.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 587\napp.config['MAIL_USE_TLS'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gail.com'  # Replace with your email\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'     # Replace with your email password\napp.config['MAIL_DEFAULT_SENDER'] = ('U-LOVE Wonders', 'uloveclub@gmail.com')\nmail = Mail(app)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAIL_SERVER']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 587\napp.config['MAIL_USE_TLS'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gail.com'  # Replace with your email\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'     # Replace with your email password\napp.config['MAIL_DEFAULT_SENDER'] = ('U-LOVE Wonders', 'uloveclub@gmail.com')\nmail = Mail(app)\napp.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 465\napp.config['MAIL_USE_TLS'] = False",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAIL_PORT']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MAIL_PORT'] = 587\napp.config['MAIL_USE_TLS'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gail.com'  # Replace with your email\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'     # Replace with your email password\napp.config['MAIL_DEFAULT_SENDER'] = ('U-LOVE Wonders', 'uloveclub@gmail.com')\nmail = Mail(app)\napp.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 465\napp.config['MAIL_USE_TLS'] = False\napp.config['MAIL_USE_SSL'] = True",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAIL_USE_TLS']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MAIL_USE_TLS'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gail.com'  # Replace with your email\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'     # Replace with your email password\napp.config['MAIL_DEFAULT_SENDER'] = ('U-LOVE Wonders', 'uloveclub@gmail.com')\nmail = Mail(app)\napp.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 465\napp.config['MAIL_USE_TLS'] = False\napp.config['MAIL_USE_SSL'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gmail.com'",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAIL_USERNAME']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MAIL_USERNAME'] = 'uloveclub@gail.com'  # Replace with your email\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'     # Replace with your email password\napp.config['MAIL_DEFAULT_SENDER'] = ('U-LOVE Wonders', 'uloveclub@gmail.com')\nmail = Mail(app)\napp.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 465\napp.config['MAIL_USE_TLS'] = False\napp.config['MAIL_USE_SSL'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gmail.com'\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAIL_PASSWORD']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MAIL_PASSWORD'] = 'U-LOVE2023'     # Replace with your email password\napp.config['MAIL_DEFAULT_SENDER'] = ('U-LOVE Wonders', 'uloveclub@gmail.com')\nmail = Mail(app)\napp.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 465\napp.config['MAIL_USE_TLS'] = False\napp.config['MAIL_USE_SSL'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gmail.com'\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'\ndef send_feedback_email(feedback_message):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAIL_DEFAULT_SENDER']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MAIL_DEFAULT_SENDER'] = ('U-LOVE Wonders', 'uloveclub@gmail.com')\nmail = Mail(app)\napp.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 465\napp.config['MAIL_USE_TLS'] = False\napp.config['MAIL_USE_SSL'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gmail.com'\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'\ndef send_feedback_email(feedback_message):\n    msg = Message('New Feedback Submission', recipients=['uloveclub@gmail.com'])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "mail",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "mail = Mail(app)\napp.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 465\napp.config['MAIL_USE_TLS'] = False\napp.config['MAIL_USE_SSL'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gmail.com'\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'\ndef send_feedback_email(feedback_message):\n    msg = Message('New Feedback Submission', recipients=['uloveclub@gmail.com'])\n    msg.body = f\"Feedback: {feedback_message}\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAIL_SERVER']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MAIL_SERVER'] = 'smtp.gmail.com'\napp.config['MAIL_PORT'] = 465\napp.config['MAIL_USE_TLS'] = False\napp.config['MAIL_USE_SSL'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gmail.com'\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'\ndef send_feedback_email(feedback_message):\n    msg = Message('New Feedback Submission', recipients=['uloveclub@gmail.com'])\n    msg.body = f\"Feedback: {feedback_message}\"\n    mail.send(msg)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAIL_PORT']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MAIL_PORT'] = 465\napp.config['MAIL_USE_TLS'] = False\napp.config['MAIL_USE_SSL'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gmail.com'\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'\ndef send_feedback_email(feedback_message):\n    msg = Message('New Feedback Submission', recipients=['uloveclub@gmail.com'])\n    msg.body = f\"Feedback: {feedback_message}\"\n    mail.send(msg)\n# Initialize Extensions",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAIL_USE_TLS']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MAIL_USE_TLS'] = False\napp.config['MAIL_USE_SSL'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gmail.com'\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'\ndef send_feedback_email(feedback_message):\n    msg = Message('New Feedback Submission', recipients=['uloveclub@gmail.com'])\n    msg.body = f\"Feedback: {feedback_message}\"\n    mail.send(msg)\n# Initialize Extensions\ndb = SQLAlchemy(app)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAIL_USE_SSL']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MAIL_USE_SSL'] = True\napp.config['MAIL_USERNAME'] = 'uloveclub@gmail.com'\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'\ndef send_feedback_email(feedback_message):\n    msg = Message('New Feedback Submission', recipients=['uloveclub@gmail.com'])\n    msg.body = f\"Feedback: {feedback_message}\"\n    mail.send(msg)\n# Initialize Extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAIL_USERNAME']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MAIL_USERNAME'] = 'uloveclub@gmail.com'\napp.config['MAIL_PASSWORD'] = 'U-LOVE2023'\ndef send_feedback_email(feedback_message):\n    msg = Message('New Feedback Submission', recipients=['uloveclub@gmail.com'])\n    msg.body = f\"Feedback: {feedback_message}\"\n    mail.send(msg)\n# Initialize Extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['MAIL_PASSWORD']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['MAIL_PASSWORD'] = 'U-LOVE2023'\ndef send_feedback_email(feedback_message):\n    msg = Message('New Feedback Submission', recipients=['uloveclub@gmail.com'])\n    msg.body = f\"Feedback: {feedback_message}\"\n    mail.send(msg)\n# Initialize Extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = 'login'  # Redirect unauthorized users to login",
         "detail": "app",
         "documentation": {}
     },
@@ -765,7 +960,7 @@
         "kind": 6,
         "importPath": "forms",
         "description": "forms",
-        "peekOfCode": "class RegistrationForm(FlaskForm):\n    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=25)])\n    email = StringField('Email', validators=[DataRequired(), Email()])\n    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])\n    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])\n    role = SelectField('Role', choices=[('peer_supporter', 'Peer Supporter'),\n                                        ('counsellor', 'Counsellor'),\n                                        ('student', 'Student'),\n                                        ('admin', 'Admin')],\n                       validators=[DataRequired()])",
+        "peekOfCode": "class RegistrationForm(FlaskForm):\n    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=25)])\n    email = StringField('Email', validators=[DataRequired(), Email()])\n    password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])\n    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])\n    role = SelectField('Role', choices=[('peer_support_dashboard', 'Peer Supporter'),\n                                        ('counsellor_dashboard', 'Counsellor'),\n                                        ('student_dashboard', 'Student'),\n                                        ('admin_dashboard', 'Admin')],\n                       validators=[DataRequired()])",
         "detail": "forms",
         "documentation": {}
     },
