@@ -62,6 +62,21 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
     role = db.Column(db.String(50), nullable=False)
+    active = db.Column(db.Boolean, default=True)
+
+    @property
+    def is_active(self):
+        return True  # Returns True if the user is active
+    
+    def get_id(self):
+        """Return the unique identifier for the user."""
+        return str(self.id)
+    
+    def is_authenticated(self):
+        """Return True if the user is authenticated."""
+        return True
+    
+
 
     # Password hashing and verification
     def set_password(self, password):
@@ -121,25 +136,24 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('main_dashboard'))  # Redirect if already logged in
-
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user and user.check_password(form.password.data):
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+        if user and user.check_password(password):
             login_user(user)
-            flash('Login successful!', 'success')
-
-            # Redirect all users to a single dashboard
             return redirect(url_for('main_dashboard'))
         else:
-            flash('Invalid username or password', 'danger')
-
-    return render_template('main_dashboard.html', form=form)
+            flash('Invalid username or password', 'error')
+    return render_template('login.html')
 
 @app.route('/main_dashboard')
+@login_required
 def main_dashboard():
+    if current_user.is_authenticated:
+        role = getattr(current_user, 'role', 'default_role')  # Use a default if role doesn't exist
+    else:
+        role = None  # Anonymous users don't have roles
     return render_template('main_dashboard.html', role=current_user.role)
 
 @app.route('/logout')
